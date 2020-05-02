@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'utils/login_form.dart';
 
-class LogIn extends StatelessWidget {
+class LogIn extends StatefulWidget {
+  @override
+  _LogInState createState() => _LogInState();
+}
+
+class _LogInState extends State<LogIn> {
+  void _goToSignIn() {}
+
   @override
   Widget build(BuildContext context) {
     // retorna a barra de notificação
@@ -10,11 +17,16 @@ class LogIn extends StatelessWidget {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        // coloca os itens ao centro
+        // alguns widgets tem a propriedade children que suporta vários widgets
         children: <Widget>[
           Text(
             'CheerUP',
             style: TextStyle(
-                color: Colors.cyan, fontSize: 45, fontWeight: FontWeight.bold),
+              color: Colors.cyan,
+              fontSize: 45,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           SizedBox(
             height: 50,
@@ -27,7 +39,9 @@ class LogIn extends StatelessWidget {
                 fontWeight: FontWeight.normal,
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              _goToSignIn();
+            },
           )
         ],
       ),
