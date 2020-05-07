@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   // controla o tempo da splash screen
   Future<Timer> _splashTimer() async {
-    var tempo = Duration(seconds: 5);
+    var tempo = Duration(seconds: 1);
     return Timer(tempo, _nextScreen);
   }
 
@@ -35,10 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Text(
           'CheerUP',
           style: TextStyle(
-            color: Colors.cyan,
-            fontSize: 45,
-            fontWeight: FontWeight.bold
-          ),
+              color: Colors.cyan, fontSize: 45, fontWeight: FontWeight.bold),
         ),
       ),
     );

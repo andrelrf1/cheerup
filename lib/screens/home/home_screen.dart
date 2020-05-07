@@ -4,47 +4,127 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Início',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.normal,
-          ),
+      body: Container(
+        decoration: new BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              stops: [
+                0.1,
+                0.7
+              ],
+              colors: [
+                Colors.cyanAccent,
+                Colors.white,
+              ]),
         ),
-      ),
-      drawer: Drawer(
-        child: Column(
+        // padding: EdgeInsets.only(top: 29.1),
+        // color: Colors.yellow[200],
+        child: ListView(
           children: <Widget>[
-            UserAccountsDrawerHeader(
-              accountEmail: Text(
-                'example@example.com',
+            SizedBox(
+              height: 15,
+            ),
+            Row(
+              children: <Widget>[
+                SizedBox(
+                  width: 30,
+                ),
+                CircleAvatar(
+                  backgroundColor: Colors.black12,
+                  child: Icon(
+                    Icons.person,
+                    color: Colors.blueGrey,
+                    size: 45,
+                  ),
+                  radius: 45,
+                ),
+                Container(
+                  margin:
+                      new EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+                  height: 110,
+                  width: MediaQuery.of(context).size.width * 0.58,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Colors.white,
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.grey[400],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "  Evolução",
                 style: TextStyle(
-                  color: Colors.white,
+                    fontSize: 25,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            Container(
+              margin: new EdgeInsets.only(
+                  left: 20.0, right: 20, top: 5, bottom: 20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                color: Colors.white,
+                border: Border.all(
+                  width: 1,
+                  color: Colors.grey[400],
                 ),
               ),
-              accountName: Text(
-                'Coisinha',
+              height: 250,
+            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "  Última entrada",
                 style: TextStyle(
-                  color: Colors.white,
+                  fontSize: 25,
+                  color: Colors.grey,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              currentAccountPicture: Icon(Icons.person),
-              arrowColor: Colors.cyan,
             ),
-            ListTile(
-              leading: Icon(Icons.book),
-              title: Text('Diário'),
-              onTap: () {},
+            const Divider(
+              color: Colors.grey,
+              height: 20,
+              thickness: 5,
+              indent: 20,
+              endIndent: 20,
             ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Configurações'),
-              onTap: () {},
-            )
+            Container(
+              margin: new EdgeInsets.only(top: 5, left: 20, right: 20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                color: Colors.white,
+                border: Border.all(
+                  width: 1,
+                  color: Colors.grey[400],
+                ),
+              ),
+              height: 250,
+            ),
+            Container(
+              height: 40,
+              alignment: Alignment.center,
+              margin: new EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              child: FlatButton(
+                onPressed: () {},
+                child: Text("Visualizar mais"),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
+
+  Radius buildRadius() => Radius.circular(40.0);
 }
