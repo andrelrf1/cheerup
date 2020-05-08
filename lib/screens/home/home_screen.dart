@@ -39,18 +39,28 @@ class Home extends StatelessWidget {
                   ),
                   radius: 45,
                 ),
-                Container(
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   margin:
                       new EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
-                  height: 110,
-                  width: MediaQuery.of(context).size.width * 0.58,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Colors.white,
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.grey[400],
-                    ),
+                  child: Column(
+                    // mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Container(
+                        height: 110,
+                        width: MediaQuery.of(context).size.width * 0.58,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: Colors.white,
+                          border: Border.all(
+                            width: 1,
+                            color: Colors.grey[400],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -58,30 +68,39 @@ class Home extends StatelessWidget {
             Container(
               alignment: Alignment.centerLeft,
               child: Text(
-                "  Evolução",
+                "   Evolução",
                 style: TextStyle(
                     fontSize: 25,
                     color: Colors.grey,
                     fontWeight: FontWeight.bold),
               ),
             ),
-            Container(
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
               margin: new EdgeInsets.only(
                   left: 20.0, right: 20, top: 5, bottom: 20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: Colors.white,
-                border: Border.all(
-                  width: 1,
-                  color: Colors.grey[400],
-                ),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      color: Colors.white,
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.grey[400],
+                      ),
+                    ),
+                    height: 250,
+                  ),
+                ],
               ),
-              height: 250,
             ),
             Container(
               alignment: Alignment.centerLeft,
               child: Text(
-                "  Última entrada",
+                "   Última entrada",
                 style: TextStyle(
                   fontSize: 25,
                   color: Colors.grey,
@@ -91,22 +110,31 @@ class Home extends StatelessWidget {
             ),
             const Divider(
               color: Colors.grey,
-              height: 20,
-              thickness: 5,
+              height: 5,
+              thickness: 4,
               indent: 20,
               endIndent: 20,
             ),
-            Container(
-              margin: new EdgeInsets.only(top: 5, left: 20, right: 20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: Colors.white,
-                border: Border.all(
-                  width: 1,
-                  color: Colors.grey[400],
-                ),
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
-              height: 250,
+              margin: new EdgeInsets.only(top: 10, left: 20, right: 20),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      color: Colors.white,
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.grey[400],
+                      ),
+                    ),
+                    height: 250,
+                  ),
+                ],
+              ),
             ),
             Container(
               height: 40,
