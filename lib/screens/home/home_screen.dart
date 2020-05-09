@@ -1,3 +1,4 @@
+import 'package:cheerup/screens/diary/diary_screen.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -19,7 +20,6 @@ class Home extends StatelessWidget {
               ]),
         ),
         // padding: EdgeInsets.only(top: 29.1),
-        // color: Colors.yellow[200],
         child: ListView(
           children: <Widget>[
             SizedBox(
@@ -44,21 +44,82 @@ class Home extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   margin:
-                      new EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+                      new EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                   child: Column(
                     // mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Container(
-                        height: 110,
-                        width: MediaQuery.of(context).size.width * 0.58,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          color: Colors.white,
-                          border: Border.all(
-                            width: 1,
-                            color: Colors.grey[400],
-                          ),
+                        alignment: Alignment.topLeft,
+                        padding: EdgeInsets.only(top: 10),
+                        child: Text(
+                          "Como você se sente?",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
+                      ),
+                      Row(
+                        children: <Widget>[
+                          IconButton(
+                            icon: Icon(Icons.face),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Diary(),
+                                ),
+                              );
+                            },
+                            color: Colors.blue,
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.face),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Diary(),
+                                ),
+                              );
+                            },
+                            color: Colors.purple,
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.face),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Diary(),
+                                ),
+                              );
+                            },
+                            color: Colors.grey,
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.face),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Diary(),
+                                ),
+                              );
+                            },
+                            color: Colors.green,
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.face),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Diary(),
+                                ),
+                              );
+                            },
+                            color: Colors.yellow,
+                          ),
+                        ],
                       ),
                     ],
                   ),
