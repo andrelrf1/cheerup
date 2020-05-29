@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
-import 'utils/favorites_card.dart';
-import 'utils/user_info.dart';
+import 'components/favorites_card.dart';
+import 'components/user_info.dart';
+import 'components/options_card.dart';
+import 'components/user_settings.dart';
 
-class User extends StatelessWidget {
+class User extends StatefulWidget {
+  @override
+  _UserState createState() => _UserState();
+}
+
+class _UserState extends State<User> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -26,10 +33,35 @@ class User extends StatelessWidget {
           child: ListView(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 50),
+                padding: EdgeInsets.symmetric(vertical: 60),
                 child: UserInfo(),
               ),
-              FavoritesCard()
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                child: Options(),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 15, right: 5, left: 5),
+                child: FavoritesCard(
+                  titulo: 'Filmes',
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 15, right: 5, left: 5),
+                child: FavoritesCard(
+                  titulo: 'Músicas',
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 15, right: 5, left: 5),
+                child: FavoritesCard(
+                  titulo: 'Séries',
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 15, right: 5, left: 5),
+                child: Settings(),
+              ),
             ],
           ),
         ),

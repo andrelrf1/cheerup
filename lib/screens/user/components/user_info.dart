@@ -7,18 +7,20 @@ class UserInfo extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         CircleAvatar(
+          backgroundColor: Colors.grey[300],
+          child: Icon(
+            Icons.person_outline,
+            size: 50,
+          ),
           radius: 80,
         ),
         SizedBox(
-          height: 50,
+          height: 60,
         ),
         Text(
           'Nome do usuário',
           style: TextStyle(
-            color: Colors.grey,
-            fontWeight: FontWeight.normal,
-            fontSize: 26
-          ),
+              color: Colors.grey, fontWeight: FontWeight.normal, fontSize: 26),
         )
       ],
     );
