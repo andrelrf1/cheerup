@@ -8,7 +8,6 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  void _goToSignIn() {}
 
   @override
   Widget build(BuildContext context) {
@@ -32,17 +31,28 @@ class _LogInState extends State<LogIn> {
             height: 50,
           ),
           LogInForm(),
-          FlatButton(
-            child: Text(
-              'Não possui uma conta?',
-              style: TextStyle(
-                fontWeight: FontWeight.normal,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Não possui uma conta?',
+                style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                ),
               ),
-            ),
-            onPressed: () {
-              _goToSignIn();
-            },
-          )
+              FlatButton(
+                child: Text(
+                  'Clique aqui',
+                  style: TextStyle(
+                    color: Colors.blue
+                    )
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/SignIn');
+                },
+              )
+            ],
+          ),
         ],
       ),
     );
