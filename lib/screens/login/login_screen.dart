@@ -8,52 +8,49 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-
   @override
   Widget build(BuildContext context) {
     // retorna a barra de notificação
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        // coloca os itens ao centro
-        // alguns widgets tem a propriedade children que suporta vários widgets
-        children: <Widget>[
-          Text(
-            'CheerUP',
-            style: TextStyle(
-              color: Colors.cyan,
-              fontSize: 45,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(
-            height: 50,
-          ),
-          LogInForm(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'Não possui uma conta?',
-                style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                ),
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          // coloca os itens ao centro
+          // alguns widgets tem a propriedade children que suporta vários widgets
+          children: <Widget>[
+            Text(
+              'CheerUP',
+              style: TextStyle(
+                color: Colors.cyan,
+                fontSize: 45,
+                fontWeight: FontWeight.bold,
               ),
-              FlatButton(
-                child: Text(
-                  'Clique aqui',
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            LogInForm(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'Não possui uma conta?',
                   style: TextStyle(
-                    color: Colors.blue
-                    )
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/SignIn');
-                },
-              )
-            ],
-          ),
-        ],
+                FlatButton(
+                  child:
+                      Text('Clique aqui', style: TextStyle(color: Colors.blue)),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/SignIn');
+                  },
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
