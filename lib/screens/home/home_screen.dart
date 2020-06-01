@@ -1,64 +1,135 @@
-import 'package:cheerup/screens/diary/diary_screen.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
-  double _emocao0 = 0;
-  double _emocao1 = 0;
-  double _emocao2 = 0;
-  double _emocao3 = 0;
-  double _emocao4 = 0;
+class Emotion {
+  final String year;
+  final int clicks;
+  final charts.Color color;
 
-  BarChartGroupData makeGroupData(int x, double y1) {
-    return BarChartGroupData(barsSpace: 4, x: x, barRods: [
-      BarChartRodData(
-        y: y1,
-        color: Colors.indigoAccent,
-        width: 7,
-      ),
-      // BarChartRodData(
-      //   y: y2,
-      //   color: Colors.lightBlueAccent,
-      //   width: 7,
-      // ),
-    ]);
+  Emotion(this.year, this.clicks, Color color)
+      : this.color = charts.Color(
+            r: color.red, g: color.green, b: color.blue, a: color.alpha);
+}
+
+class _HomeState extends State<Home> {
+  int _emocao0 = 1;
+  int _emocao1 = 2;
+  int _emocao2 = 3;
+  int _emocao3 = 4;
+  int _emocao4 = 5;
+
+  void barGrupo1() {
+    setState(() {
+      _emocao0++;
+    });
+    // return makeGroupData(0, _emocao0);
   }
 
-  List<BarChartGroupData> rawBarGroups;
-  List<BarChartGroupData> showingBarGroups;
+  void barGrupo2() {
+    setState(() {
+      _emocao1++;
+    });
+  }
 
-  var x = 0;
+  void barGrupo3() {
+    setState(() {
+      _emocao2++;
+    });
+    // return makeGroupData(0, _emocao0);
+  }
+
+  void barGrupo4() {
+    setState(() {
+      _emocao3++;
+    });
+    // return makeGroupData(0, _emocao0);
+  }
+
+  void barGrupo5() {
+    setState(() {
+      _emocao4++;
+    });
+    // return makeGroupData(0, _emocao0);
+  }
+  // BarChartGroupData makeGroupData(int x, double y1) {
+  //   return BarChartGroupData(barsSpace: 4, x: x, barRods: [
+  //     BarChartRodData(
+  //       y: y1,
+  //       color: Colors.indigoAccent,
+  //       width: 7,
+  //     ),
+  //     // BarChartRodData(
+  //     //   y: y2,
+  //     //   color: Colors.lightBlueAccent,
+  //     //   width: 7,
+  //     // ),
+  //   ]);
+  // }
+
+  // List<BarChartGroupData> rawBarGroups;
+  // List<BarChartGroupData> showingBarGroups;
 
   @override
-  void initState() {
-    super.initState();
+  // void initState() {
+  //   super.initState();
 
-    final barGroup1 = makeGroupData(0, 0);
-    final barGroup2 = makeGroupData(1, 0);
-    final barGroup3 = makeGroupData(2, 0);
-    final barGroup4 = makeGroupData(3, 0);
-    final barGroup5 = makeGroupData(4, 0);
+  //   final barGroup1 = makeGroupData(0, 0);
+  //   final barGroup2 = makeGroupData(1, 0);
+  //   final barGroup3 = makeGroupData(2, 0);
+  //   final barGroup4 = makeGroupData(3, 0);
+  //   final barGroup5 = makeGroupData(4, 0);
 
-    final items = [
-      barGroup1,
-      barGroup2,
-      barGroup3,
-      barGroup4,
-      barGroup5,
-    ];
+  //   final items = [
+  //     barGroup1,
+  //     barGroup2,
+  //     barGroup3,
+  //     barGroup4,
+  //     barGroup5,
+  //   ];
 
-    rawBarGroups = items.cast<BarChartGroupData>();
+  //   rawBarGroups = items.cast<BarChartGroupData>();
 
-    showingBarGroups = rawBarGroups;
-  }
+  //   showingBarGroups = rawBarGroups;
+  // }
 
   Widget build(BuildContext context) {
+    var data = [
+      Emotion('Mazelado', _emocao0, Colors.blue),
+      Emotion('Bad', _emocao1, Colors.purple),
+      Emotion('Suavi', _emocao2, Colors.grey),
+      Emotion('Massa', _emocao3, Colors.green),
+      Emotion('Transando', _emocao4, Colors.yellow),
+    ];
+
+    var series = [
+      charts.Series(
+        domainFn: (Emotion clickData, _) => clickData.year,
+        measureFn: (Emotion clickData, _) => clickData.clicks,
+        colorFn: (Emotion clickData, _) => clickData.color,
+        id: 'Emotion',
+        data: data,
+      ),
+    ];
+
+    var chart = charts.BarChart(
+      series,
+      animate: true,
+    );
+
+    var chartWidget = Padding(
+      padding: EdgeInsets.all(32.0),
+      child: SizedBox(
+        height: 200.0,
+        child: chart,
+      ),
+    );
+
     return Scaffold(
       body: Container(
         decoration: new BoxDecoration(
@@ -123,7 +194,7 @@ class _HomeState extends State<Home> {
                               //     builder: (context) => Diary(),
                               //   ),
                               // );
-                              barGrupo1(0);
+                              barGrupo1();
                               print(_emocao0);
                             },
                             color: Colors.blue,
@@ -137,7 +208,7 @@ class _HomeState extends State<Home> {
                               //     builder: (context) => Diary(),
                               //   ),
                               // );
-                              barGrupo2(1);
+                              barGrupo2();
                             },
                             color: Colors.purple,
                           ),
@@ -150,7 +221,7 @@ class _HomeState extends State<Home> {
                               //     builder: (context) => Diary(),
                               //   ),
                               // );
-                              barGrupo3(2);
+                              barGrupo3();
                             },
                             color: Colors.grey,
                           ),
@@ -163,7 +234,7 @@ class _HomeState extends State<Home> {
                               //     builder: (context) => Diary(),
                               //   ),
                               // );
-                              barGrupo4(3);
+                              barGrupo4();
                             },
                             color: Colors.green,
                           ),
@@ -176,7 +247,7 @@ class _HomeState extends State<Home> {
                               //     builder: (context) => Diary(),
                               //   ),
                               // );
-                              barGrupo5(4);
+                              barGrupo5();
                             },
                             color: Colors.yellow,
                           ),
@@ -217,72 +288,73 @@ class _HomeState extends State<Home> {
                       padding: EdgeInsets.symmetric(
                         vertical: 20,
                       ),
-                      child: BarChart(
-                        BarChartData(
-                          maxY: 20,
-                          barTouchData: BarTouchData(
-                            touchTooltipData: BarTouchTooltipData(
-                              tooltipBgColor: Colors.grey,
-                              // getTooltipItem: (_a, _b, _c) => null,
-                            ),
-                          ),
-                          titlesData: FlTitlesData(
-                            show: true,
-                            bottomTitles: SideTitles(
-                              showTitles: true,
-                              textStyle: TextStyle(
-                                  color: const Color(0xff7589a2),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
-                              margin: 20,
-                              getTitles: (double value) {
-                                switch (value.toInt()) {
-                                  case 0:
-                                    return 'Mn';
-                                  case 1:
-                                    return 'Te';
-                                  case 2:
-                                    return 'Wd';
-                                  case 3:
-                                    return 'Tu';
-                                  case 4:
-                                    return 'Fr';
-                                  case 5:
-                                    return 'St';
-                                  case 6:
-                                    return 'Sn';
-                                  default:
-                                    return '';
-                                }
-                              },
-                            ),
-                            leftTitles: SideTitles(
-                              showTitles: true,
-                              textStyle: TextStyle(
-                                  color: const Color(0xff7589a2),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
-                              margin: 32,
-                              reservedSize: 14,
-                              getTitles: (value) {
-                                if (value == 0) {
-                                  return '1K';
-                                } else if (value == 10) {
-                                  return '5K';
-                                } else if (value == 19) {
-                                  return '10K';
-                                } else {
-                                  return '';
-                                }
-                              },
-                            ),
-                          ),
-                          borderData: FlBorderData(
-                            show: false,
-                          ),
-                          barGroups: showingBarGroups,
-                        ),
-                      ),
+                      child: chartWidget,
+                      // child: BarChart(
+                      //   BarChartData(
+                      //     maxY: 20,
+                      //     barTouchData: BarTouchData(
+                      //       touchTooltipData: BarTouchTooltipData(
+                      //         tooltipBgColor: Colors.grey,
+                      //         // getTooltipItem: (_a, _b, _c) => null,
+                      //       ),
+                      //     ),
+                      //     titlesData: FlTitlesData(
+                      //       show: true,
+                      //       bottomTitles: SideTitles(
+                      //         showTitles: true,
+                      //         textStyle: TextStyle(
+                      //             color: const Color(0xff7589a2),
+                      //             fontWeight: FontWeight.bold,
+                      //             fontSize: 14),
+                      //         margin: 20,
+                      //         getTitles: (double value) {
+                      //           switch (value.toInt()) {
+                      //             case 0:
+                      //               return 'Mn';
+                      //             case 1:
+                      //               return 'Te';
+                      //             case 2:
+                      //               return 'Wd';
+                      //             case 3:
+                      //               return 'Tu';
+                      //             case 4:
+                      //               return 'Fr';
+                      //             case 5:
+                      //               return 'St';
+                      //             case 6:
+                      //               return 'Sn';
+                      //             default:
+                      //               return '';
+                      //           }
+                      //         },
+                      //       ),
+                      //       leftTitles: SideTitles(
+                      //         showTitles: true,
+                      //         textStyle: TextStyle(
+                      //             color: const Color(0xff7589a2),
+                      //             fontWeight: FontWeight.bold,
+                      //             fontSize: 14),
+                      //         margin: 32,
+                      //         reservedSize: 14,
+                      //         getTitles: (value) {
+                      //           if (value == 0) {
+                      //             return '1K';
+                      //           } else if (value == 10) {
+                      //             return '5K';
+                      //           } else if (value == 19) {
+                      //             return '10K';
+                      //           } else {
+                      //             return '';
+                      //           }
+                      //         },
+                      //       ),
+                      //     ),
+                      //     borderData: FlBorderData(
+                      //       show: false,
+                      //     ),
+                      //     barGroups: showingBarGroups,
+                      //   ),
+                      // ),
 
                       //LineChart(
                       //   LineChartData(
@@ -397,31 +469,29 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              margin: new EdgeInsets.only(top: 10, left: 20, right: 20),
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.center,
-                    margin:
-                        new EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                    child: FlatButton(
-                      onPressed: () {},
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
-                      // child: Image.network(
-                      //   'https://technotec.com.br/wp-content/uploads/2018/04/goo_gl-56a4010c3df78cf7728052e9.jpg',
-                      // ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Card(
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(10),
+            //   ),
+            //   margin: new EdgeInsets.only(top: 10, left: 20, right: 20),
+            //   child: ListView(
+            //     scrollDirection: Axis.horizontal,
+            //     children: <Widget>[
+            //       Container(
+            //         alignment: Alignment.center,
+            //         margin:
+            //             new EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            //         child: FlatButton(
+            //           onPressed: () {},
+            //           shape: RoundedRectangleBorder(
+            //             borderRadius: BorderRadius.circular(18.0),
+            //           ),
+            //           child: null,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -429,25 +499,4 @@ class _HomeState extends State<Home> {
   }
 
   Radius buildRadius() => Radius.circular(40.0);
-
-  barGrupo1(int x) {
-    _emocao0 = _emocao0 + 1;
-    return makeGroupData(0, _emocao0);
-  }
-
-  barGrupo2(int x) {
-    return _emocao1 + 1;
-  }
-
-  barGrupo3(int x) {
-    return _emocao2 + 1;
-  }
-
-  barGrupo4(int x) {
-    return _emocao3 + 1;
-  }
-
-  barGrupo5(int x) {
-    return _emocao4 + 1;
-  }
 }
