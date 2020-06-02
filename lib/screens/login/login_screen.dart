@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'utils/login_form.dart';
+//import '../user/user_screen.dart';
+import '../signin/signin_screen.dart';
 
 class LogIn extends StatefulWidget {
   @override
@@ -8,7 +10,14 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  void _goToSignIn() {}
+  void _goToSignIn() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SignIn(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
