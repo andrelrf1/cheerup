@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/splash/splash_screen.dart';
 import 'screens/login/login_screen.dart';
+import 'screens/signin/signin_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.cyan,
       ),
       home: SplashScreen(),
-      routes: <String, WidgetBuilder>{'/LogIn': (context) => LogIn()},
+      routes: <String, WidgetBuilder>{'/LogIn': (context) => LogIn(), '/SignIn' : (context) => SignIn()},
     );
   }
 }
