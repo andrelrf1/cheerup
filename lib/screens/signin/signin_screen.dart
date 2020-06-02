@@ -1,6 +1,8 @@
+import 'dart:io';
+import 'package:cheerup/screens/login/login_screen.dart';
+import 'package:cheerup/screens/utils/alert.dart';
 import 'package:flutter/material.dart';
 import '../../requests.dart' as requests;
-import 'dart:convert';
 
 class SignIn extends StatefulWidget {
   @override
@@ -60,7 +62,7 @@ class _SignInState extends State<SignIn> {
     });
   }
 
-  void _signin() async {
+  _signin() async {
     var result = await requests.signIn({
       'email': emailController.text,
       'first_name': nameController.text,
@@ -69,7 +71,56 @@ class _SignInState extends State<SignIn> {
       'password': passwordController.text
     });
     _changeButtonStatus();
-    print(result.body);
+    if (result.runtimeType == SocketException) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Alert(
+            context: context,
+            titulo: 'Erro',
+            mensagem: 'Houve um erro de conexão com a internet.',
+            buttonText: 'Fechar',
+          );
+        },
+      );
+    } else {
+      if (result.statusCode == 200) {
+        emailController.clear();
+        nameController.clear();
+        lastNameController.clear();
+        dateOfBirthController.clear();
+        passwordController.clear();
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return Alert(
+              context: context,
+              titulo: 'Sucesso',
+              mensagem: 'Sua conta foi criada!',
+              buttonText: 'Ok',
+              function: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => LogIn()),
+                );
+              },
+            );
+          },
+        );
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return Alert(
+              context: context,
+              titulo: 'Erro',
+              mensagem: 'Houve um erro de conexão com a internet.',
+              buttonText: 'Fechar',
+            );
+          },
+        );
+      }
+    }
   }
 
   @override
@@ -222,9 +273,18 @@ class _SignInState extends State<SignIn> {
                                 if (passwordController.text ==
                                     passwordAgainController.text) {
                                   _changeButtonStatus();
-                                  _signin();
+                                  await _signin();
                                 } else {
-                                  print('senhas erradas :D');
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Alert(
+                                          context: context,
+                                          titulo: 'Erro',
+                                          mensagem: 'As senhas não conferem!',
+                                          buttonText: 'Fechar',
+                                        );
+                                      });
                                 }
                               }
                             }
